@@ -1,0 +1,6 @@
+framework module Pods_MarinasSearch_MarinasSearchUITests {
+  umbrella header "Pods-MarinasSearch-MarinasSearchUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
