@@ -24,6 +24,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         view.delegate = self
         view.dataSource = self
         view.autoresizesSubviews = true
+        view.showsVerticalScrollIndicator = false
         return view
     }()
 
@@ -34,8 +35,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         // Do any additional setup after loading the view.
         view.addSubview(buttonGridCollectionView)
 
+        let gridInset = UIDevice.current.userInterfaceIdiom == .pad ? 100 : 30
         buttonGridCollectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().inset(gridInset)
         }
     }
 }
@@ -50,7 +52,6 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! IconLabelButton
 
         cell.icon = buttonOptions[indexPath.row]
-        cell.backgroundColor = .blue
         return cell
     }
 }
@@ -67,7 +68,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
                    sizeForItemAt indexPath: IndexPath) -> CGSize {
         let lay = collectionViewLayout as! UICollectionViewFlowLayout
         let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 8, height: 250)
+        return CGSize(width: widthPerItem - 8, height: 200)
     }
 }
 

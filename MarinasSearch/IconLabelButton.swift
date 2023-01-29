@@ -24,6 +24,7 @@ public class IconLabelButton: UICollectionViewCell {
 
     private lazy var iconView =  {
         let image = UIImageView()
+        image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -36,20 +37,36 @@ public class IconLabelButton: UICollectionViewCell {
         return buttonLabel
     }()
 
+    private lazy var iconLabelButtonView: UIView = {
+        let view = UIView(frame: bounds)
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        view.layer.shadowRadius = 2
+        return view
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
 
-        [iconView, labelView].forEach(addSubview)
+        addSubview(iconLabelButtonView)
+        [iconView, labelView].forEach(iconLabelButtonView.addSubview)
 
+        // slightly different layout for ipad
+        let topInset = UIDevice.current.userInterfaceIdiom == .pad ? 20 : 0
         iconView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalToSuperview().inset(topInset)
+            make.left.right.equalToSuperview().inset(10)
+            make.bottom.equalTo(labelView.snp.top)
         }
 
         labelView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().inset(10)
+            make.height.equalTo(30)
         }
-
     }
 
     required init?(coder: NSCoder) {
