@@ -19,6 +19,9 @@
 		8AC8C40C298628E300687006 /* MarinasSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C40B298628E300687006 /* MarinasSearchUITests.swift */; };
 		8AC8C40E298628E300687006 /* MarinasSearchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C40D298628E300687006 /* MarinasSearchUITestsLaunchTests.swift */; };
 		8AC8C41D29862B0900687006 /* IconLabelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C41C29862B0900687006 /* IconLabelButton.swift */; };
+		8AC8C41F2987710800687006 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C41E2987710800687006 /* SearchResultViewController.swift */; };
+		8AC8C4212987715200687006 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C4202987715200687006 /* SearchResultView.swift */; };
+		8AC8C4232987857C00687006 /* InterestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C4222987857C00687006 /* InterestPoint.swift */; };
 		A73E6201DE7A4D73E242951F /* Pods_MarinasSearch_MarinasSearchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4745BB9D920436ADD5C35297 /* Pods_MarinasSearch_MarinasSearchUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,9 @@
 		8AC8C40B298628E300687006 /* MarinasSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarinasSearchUITests.swift; sourceTree = "<group>"; };
 		8AC8C40D298628E300687006 /* MarinasSearchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarinasSearchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8AC8C41C29862B0900687006 /* IconLabelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabelButton.swift; sourceTree = "<group>"; };
+		8AC8C41E2987710800687006 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		8AC8C4202987715200687006 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		8AC8C4222987857C00687006 /* InterestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestPoint.swift; sourceTree = "<group>"; };
 		C0DAE664B994BBFBF9BBB32E /* Pods-MarinasSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarinasSearchTests.release.xcconfig"; path = "Target Support Files/Pods-MarinasSearchTests/Pods-MarinasSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC169799BDBE951F58A3D73C /* Pods-MarinasSearch-MarinasSearchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarinasSearch-MarinasSearchUITests.debug.xcconfig"; path = "Target Support Files/Pods-MarinasSearch-MarinasSearchUITests/Pods-MarinasSearch-MarinasSearchUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDF523DE18FC1DC9334BF4C7 /* Pods_MarinasSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarinasSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,8 +124,6 @@
 		8AC8C3E9298628E100687006 /* MarinasSearch */ = {
 			isa = PBXGroup;
 			children = (
-				8AC8C41B29862A0E00687006 /* Views */,
-				8AC8C41A29862A0300687006 /* ViewControllers */,
 				8AC8C3EA298628E100687006 /* AppDelegate.swift */,
 				8AC8C3EC298628E100687006 /* SceneDelegate.swift */,
 				8AC8C3EE298628E100687006 /* ViewController.swift */,
@@ -128,6 +132,9 @@
 				8AC8C3F5298628E200687006 /* LaunchScreen.storyboard */,
 				8AC8C3F8298628E200687006 /* Info.plist */,
 				8AC8C41C29862B0900687006 /* IconLabelButton.swift */,
+				8AC8C41E2987710800687006 /* SearchResultViewController.swift */,
+				8AC8C4202987715200687006 /* SearchResultView.swift */,
+				8AC8C4222987857C00687006 /* InterestPoint.swift */,
 			);
 			path = MarinasSearch;
 			sourceTree = "<group>";
@@ -147,20 +154,6 @@
 				8AC8C40D298628E300687006 /* MarinasSearchUITestsLaunchTests.swift */,
 			);
 			path = MarinasSearchUITests;
-			sourceTree = "<group>";
-		};
-		8AC8C41A29862A0300687006 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		8AC8C41B29862A0E00687006 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		8E1DE5190DB0128A18BB750D /* Frameworks */ = {
@@ -427,7 +420,10 @@
 			files = (
 				8AC8C41D29862B0900687006 /* IconLabelButton.swift in Sources */,
 				8AC8C3EF298628E100687006 /* ViewController.swift in Sources */,
+				8AC8C41F2987710800687006 /* SearchResultViewController.swift in Sources */,
+				8AC8C4232987857C00687006 /* InterestPoint.swift in Sources */,
 				8AC8C3EB298628E100687006 /* AppDelegate.swift in Sources */,
+				8AC8C4212987715200687006 /* SearchResultView.swift in Sources */,
 				8AC8C3ED298628E100687006 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

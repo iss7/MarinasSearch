@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public class IconLabelButton: UICollectionViewCell {
-    var icon: ButtonType {
+    var icon: InterestPoint {
         get {
             selectedIcon
         }
@@ -20,7 +20,7 @@ public class IconLabelButton: UICollectionViewCell {
         }
     }
 
-    private var selectedIcon: IconLabelButton.ButtonType = .marina
+    private var selectedIcon: InterestPoint = .marina
 
     private lazy var iconView =  {
         let image = UIImageView()
@@ -73,23 +73,4 @@ public class IconLabelButton: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-}
-
-public extension IconLabelButton {
-    enum ButtonType: String, CaseIterable {
-        case anchorage
-        case bridge
-        case ferry
-        case harbor
-        case inlet
-        case landmark
-        case lighthouse
-        case lock
-        case marina
-        case ramp
-
-        var iconLocation: String {
-            "\(rawValue)_icon"
-        }
-    }
 }

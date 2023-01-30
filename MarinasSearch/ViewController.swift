@@ -10,7 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController, UICollectionViewDelegate {
 
-    private var buttonOptions: [IconLabelButton.ButtonType] = IconLabelButton.ButtonType.allCases.map { icon in
+    private var buttonOptions: [InterestPoint] = InterestPoint.allCases.map { icon in
         icon
     }
 
@@ -27,8 +27,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         view.showsVerticalScrollIndicator = false
         return view
     }()
-
-    private lazy var contentView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +65,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
                    layout collectionViewLayout: UICollectionViewLayout,
                    sizeForItemAt indexPath: IndexPath) -> CGSize {
         let lay = collectionViewLayout as! UICollectionViewFlowLayout
-        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+        let numItems = UIDevice.current.userInterfaceIdiom == .pad ? 3.0 : 2.0
+        let widthPerItem = collectionView.frame.width / numItems - lay.minimumInteritemSpacing
         return CGSize(width: widthPerItem - 8, height: 200)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // TODO: load the data here
+        let interestType = buttonOptions[indexPath.row]
+        let searchResultTEMPORARY = (0..<100).map { _ in SearchResult(name: interestType.rawValue, interestType: interestType)}
+        let vc = SearchResultViewController(searchResult: searchResultTEMPORARY, searchTerm: interestType.rawValue)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }
 
