@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public class IconLabelButton: UICollectionViewCell {
-    var icon: InterestPoint {
+    var icon: InterestPointType {
         get {
             selectedIcon
         }
@@ -20,7 +20,7 @@ public class IconLabelButton: UICollectionViewCell {
         }
     }
 
-    private var selectedIcon: InterestPoint = .marina
+    private var selectedIcon: InterestPointType = .marina
 
     private lazy var iconView =  {
         let image = UIImageView()

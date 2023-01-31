@@ -11,7 +11,7 @@ import SnapKit
 
 class SearchResultViewController: UIViewController, UICollectionViewDelegate {
 
-    private var searchResult: [SearchResult]
+    private var searchResult: [InterestPoint]
 
     private var searchTerm: String
 
@@ -86,7 +86,7 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
     }
 
     // MARK: init
-    init(searchResult: [SearchResult], searchTerm: String) {
+    init(searchResult: [InterestPoint], searchTerm: String) {
         self.searchResult = searchResult
         self.searchTerm = searchTerm
         super.init(nibName: nil, bundle: nil)
@@ -126,6 +126,15 @@ extension SearchResultViewController: UICollectionViewDelegateFlowLayout {
                    layout collectionViewLayout: UICollectionViewLayout,
                    sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 50)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // TODO: real data here
+        let interestPoint = searchResult[indexPath.row]
+
+        let vc = InterestPointViewController(interestPoint: interestPoint)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }
 

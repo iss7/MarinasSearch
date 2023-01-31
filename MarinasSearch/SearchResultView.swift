@@ -9,18 +9,18 @@ import UIKit
 import Foundation
 
 public class SearchResultView: UICollectionViewCell {
-    var searchResult: SearchResult {
+    var searchResult: InterestPoint {
         get {
             selectedSearchResult
         }
         set {
             selectedSearchResult = newValue
-            iconView.image = UIImage(named: newValue.interestType.iconLocation)
+            iconView.image = UIImage(named: newValue.resource.iconLocation)
             labelView.text = newValue.name
         }
     }
 
-    private var selectedSearchResult = SearchResult(name: "test", interestType: .marina)
+    private var selectedSearchResult = InterestPoint(id: "123", resource: .marina, name: "test", web_url: URL(string: "www.google.com")!, location: InterestPoint.Location(lat: 65.0123, lon: 54.234, what3words: "what-three-words"), review_count: 4, images: InterestPoint.ImageCollection(data: [], total_count: 0))
 
     private lazy var iconView =  {
         let image = UIImageView()
@@ -63,10 +63,4 @@ public class SearchResultView: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-struct SearchResult: Codable {
-    var name: String
-
-    var interestType: InterestPoint
 }
