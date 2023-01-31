@@ -15,12 +15,12 @@ public class SearchResultView: UICollectionViewCell {
         }
         set {
             selectedSearchResult = newValue
-            iconView.image = UIImage(named: newValue.resource.iconLocation)
+            iconView.image = UIImage(named: newValue.kind.iconLocation)
             labelView.text = newValue.name
         }
     }
 
-    private var selectedSearchResult = InterestPoint(id: "123", resource: .marina, name: "test", web_url: URL(string: "www.google.com")!, location: InterestPoint.Location(lat: 65.0123, lon: 54.234, what3words: "what-three-words"), review_count: 4, images: InterestPoint.ImageCollection(data: [], total_count: 0))
+    private var selectedSearchResult = InterestPoint(id: "123", resource: "point", kind: .marina, name: "test", web_url: URL(string: "www.google.com")!, location: InterestPoint.Location(lat: 65.0123, lon: 54.234, what3words: "what-three-words"), review_count: 4, images: InterestPoint.ImageCollection(data: [], total_count: 0))
 
     private lazy var iconView =  {
         let image = UIImageView()

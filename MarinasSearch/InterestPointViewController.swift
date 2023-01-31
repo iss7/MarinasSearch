@@ -48,7 +48,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
         return title
     }()
 
-    private lazy var resourceRow = IconTitleRowView(iconImageLocation: interestPoint.resource.iconLocation, text: interestPoint.resource.rawValue)
+    private lazy var resourceRow = IconTitleRowView(iconImageLocation: interestPoint.kind.iconLocation, text: interestPoint.kind.rawValue)
 
     private lazy var coordsRow: IconTitleRowView = {
         let text = "\(interestPoint.location.lat), \(interestPoint.location.lon)"
@@ -185,7 +185,10 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
 
     @objc
     private func openWebView() {
-        let webView = SFSafariViewController(url: interestPoint.web_url)
+        guard let url = interestPoint.web_url else {
+            return
+        }
+        let webView = SFSafariViewController(url: url)
         webView.modalPresentationStyle = .overFullScreen
         self.present(webView, animated: true, completion: nil)
     }

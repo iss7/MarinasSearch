@@ -7,14 +7,21 @@
 
 import Foundation
 
-public struct InterestPoint {
+public struct InterestPointSet: Codable {
+    var resource: String
+    var data: [InterestPoint]
+}
+
+public struct InterestPoint: Codable {
     var id: String
 
-    var resource: InterestPointType
+    var resource: String
+
+    var kind: InterestPointType
 
     var name: String
 
-    var web_url: URL // todo: optional?
+    var web_url: URL?
 
     var location: Location
 
@@ -26,18 +33,18 @@ public struct InterestPoint {
 }
 
 extension InterestPoint {
-    struct Location {
+    struct Location: Codable {
         var lat: Float
         var lon: Float
         var what3words: String
     }
 
-    struct ImageCollection {
+    struct ImageCollection: Codable {
         var data: [ImageData]
         var total_count: Int
     }
 
-    struct ImageData {
+    struct ImageData: Codable {
         var thumbnail_url: URL?
         var small_url: URL?
         var medium_url: URL?

@@ -24,6 +24,7 @@
 		8AC8C4232987857C00687006 /* InterestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C4222987857C00687006 /* InterestPoint.swift */; };
 		8AC8C4252987883D00687006 /* InterestPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C4242987883D00687006 /* InterestPointViewController.swift */; };
 		8AC8C4292988A23300687006 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C4282988A23300687006 /* ImageCollectionViewCell.swift */; };
+		8AC8C42B2988D9D600687006 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8C42A2988D9D600687006 /* SearchAPI.swift */; };
 		A73E6201DE7A4D73E242951F /* Pods_MarinasSearch_MarinasSearchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4745BB9D920436ADD5C35297 /* Pods_MarinasSearch_MarinasSearchUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		8AC8C4222987857C00687006 /* InterestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestPoint.swift; sourceTree = "<group>"; };
 		8AC8C4242987883D00687006 /* InterestPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestPointViewController.swift; sourceTree = "<group>"; };
 		8AC8C4282988A23300687006 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		8AC8C42A2988D9D600687006 /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 		C0DAE664B994BBFBF9BBB32E /* Pods-MarinasSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarinasSearchTests.release.xcconfig"; path = "Target Support Files/Pods-MarinasSearchTests/Pods-MarinasSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC169799BDBE951F58A3D73C /* Pods-MarinasSearch-MarinasSearchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarinasSearch-MarinasSearchUITests.debug.xcconfig"; path = "Target Support Files/Pods-MarinasSearch-MarinasSearchUITests/Pods-MarinasSearch-MarinasSearchUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDF523DE18FC1DC9334BF4C7 /* Pods_MarinasSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarinasSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 		8AC8C3DE298628E100687006 = {
 			isa = PBXGroup;
 			children = (
+				8AC8C42A2988D9D600687006 /* SearchAPI.swift */,
 				8AC8C3E9298628E100687006 /* MarinasSearch */,
 				8AC8C400298628E300687006 /* MarinasSearchTests */,
 				8AC8C40A298628E300687006 /* MarinasSearchUITests */,
@@ -424,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AC8C42B2988D9D600687006 /* SearchAPI.swift in Sources */,
 				8AC8C41D29862B0900687006 /* IconLabelButton.swift in Sources */,
 				8AC8C3EF298628E100687006 /* ViewController.swift in Sources */,
 				8AC8C41F2987710800687006 /* SearchResultViewController.swift in Sources */,

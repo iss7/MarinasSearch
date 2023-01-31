@@ -13,6 +13,7 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
 
     private var searchResult: [InterestPoint]
 
+    // todo: maybe use this as title, maybe delete
     private var searchTerm: String
 
     private lazy var searchResultCollectionView = {
@@ -44,7 +45,7 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
     private lazy var titleView: UILabel = {
         var title = UILabel()
         title.textColor = .black
-        title.text = searchTerm
+        title.text = "Results"
         title.textAlignment = .center
         return title
     }()
