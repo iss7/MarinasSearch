@@ -12,8 +12,7 @@ public final class SearchAPI {
     private var pointSearch = "https://api.marinas.com/v1/points/search"
 
     func fetchPointsByKind(interestType: InterestPointType, completion: @escaping ([InterestPoint]) -> Void) {
-        // TODO: this urlstring is not properly formatted (issue with 'kinds')
-        let urlString = "\(pointSearch)?kinds=\(interestType.rawValue)"
+        let urlString = "\(pointSearch)?kinds[]=\(interestType.rawValue)"
         guard let url = URL(string: urlString) else {
             print("Error creating URL")
             return

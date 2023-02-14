@@ -22,6 +22,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         set {
             currentSearchResults = newValue
             DispatchQueue.main.async { [weak self] in
+                self?.showHideLoadingScreen(show: false)
                 self?.showSearchResults(results: newValue)
             }
         }
@@ -43,15 +44,54 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return view
     }()
 
+    private lazy var loadingOverlay = {
+        let overlay = UIView()
+        overlay.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        return overlay
+    }()
+
+    private lazy var loadingImage = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "sailboat")
+        imageView.image = image
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
+    private lazy var loadingWave = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "wavy")
+        imageView.image = image
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.addSubview(buttonGridCollectionView)
+        [buttonGridCollectionView, loadingOverlay].forEach(view.addSubview)
+        [loadingWave, loadingImage].forEach(view.addSubview)
+        showHideLoadingScreen(show: false)
 
         let gridInset = UIDevice.current.userInterfaceIdiom == .pad ? 100 : 30
         buttonGridCollectionView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview().inset(gridInset)
             make.bottom.equalToSuperview()
+        }
+
+        loadingOverlay.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        loadingImage.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.width.equalTo(200)
+        }
+        loadingWave.snp.makeConstraints { make in
+            make.width.height.equalTo(350)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(90)
         }
     }
 
@@ -59,6 +99,26 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         let vc = SearchResultViewController(searchResult: results, searchTerm: "")
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
+    }
+
+    private func showHideLoadingScreen(show: Bool) {
+        loadingOverlay.isHidden = !show
+        loadingImage.isHidden = !show
+        loadingWave.isHidden = !show
+    }
+
+    private func animateLoading() {
+        UIView.animateKeyframes(withDuration: 6, delay: 0, options: .repeat, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.5/6) {
+                self.loadingImage.transform = CGAffineTransform(rotationAngle: .pi/12)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 3/6) {
+                self.loadingImage.transform = CGAffineTransform(rotationAngle: -.pi/12)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 1.5/6) {
+                self.loadingImage.transform = .identity
+            }
+        })
     }
 }
 
@@ -98,6 +158,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     private func fetchPointOfInterest(interestType: InterestPointType) {
+        showHideLoadingScreen(show: true)
+        animateLoading()
+
         searchAPI.fetchPointsByKind(interestType: interestType) {[weak self] results in
             self?.searchResults = results
         }

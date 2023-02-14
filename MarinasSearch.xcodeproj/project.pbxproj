@@ -108,7 +108,6 @@
 		8AC8C3DE298628E100687006 = {
 			isa = PBXGroup;
 			children = (
-				8AC8C42A2988D9D600687006 /* SearchAPI.swift */,
 				8AC8C3E9298628E100687006 /* MarinasSearch */,
 				8AC8C400298628E300687006 /* MarinasSearchTests */,
 				8AC8C40A298628E300687006 /* MarinasSearchUITests */,
@@ -132,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				8AC8C3EA298628E100687006 /* AppDelegate.swift */,
+				8AC8C42A2988D9D600687006 /* SearchAPI.swift */,
 				8AC8C3EC298628E100687006 /* SceneDelegate.swift */,
 				8AC8C3EE298628E100687006 /* ViewController.swift */,
 				8AC8C3F0298628E100687006 /* Main.storyboard */,
