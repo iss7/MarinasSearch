@@ -108,14 +108,14 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
 
     private func animateLoading() {
-        UIView.animateKeyframes(withDuration: 6, delay: 0, options: .repeat, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.5/6) {
+        UIView.animateKeyframes(withDuration: 4, delay: 0, options: .repeat, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/4) {
                 self.loadingImage.transform = CGAffineTransform(rotationAngle: .pi/12)
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 3/6) {
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 2/4) {
                 self.loadingImage.transform = CGAffineTransform(rotationAngle: -.pi/12)
             }
-            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 1.5/6) {
+            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 1/4) {
                 self.loadingImage.transform = .identity
             }
         })
