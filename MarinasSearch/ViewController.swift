@@ -10,6 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController, UICollectionViewDelegate {
     let searchAPI = SearchAPI()
+    let locationManager = LocationManager()
 
     private var buttonOptions: [InterestPointType] = InterestPointType.allCases.map { icon in
         icon
@@ -85,6 +86,16 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return textInput
     }()
 
+    private lazy var instructions = {
+        var label = UILabel()
+        label.textColor = .black
+        label.text = "Enter a search term above, or select a button below to search for points of interest near you!"
+        label.textAlignment = .center
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        return label
+    }()
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -93,8 +104,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestLocation()
         // Do any additional setup after loading the view.
-        [textInput, buttonGridCollectionView, loadingOverlay].forEach(view.addSubview)
+        [textInput, instructions, buttonGridCollectionView, loadingOverlay].forEach(view.addSubview)
         [loadingWave, loadingImage].forEach(view.addSubview)
         showHideLoadingScreen(show: false)
 
@@ -103,10 +115,15 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             make.top.left.right.equalTo(view.safeAreaLayoutGuide).inset(gridInset)
             make.height.equalTo(50)
         }
+        instructions.snp.makeConstraints { make in
+            make.top.equalTo(textInput.snp.bottom).offset(20)
+            make.left.right.equalToSuperview().inset(gridInset)
+            make.height.equalTo(70)
+        }
 
         buttonGridCollectionView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(gridInset)
-            make.top.equalTo(textInput.snp.bottom).offset(50)
+            make.top.equalTo(instructions.snp.bottom).offset(20)
             make.bottom.equalToSuperview()
         }
 

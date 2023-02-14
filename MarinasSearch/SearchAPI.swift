@@ -12,7 +12,14 @@ public final class SearchAPI {
     private var pointSearch = "https://api.marinas.com/v1/points/search"
 
     func fetchPointsByKind(interestType: InterestPointType, completion: @escaping ([InterestPoint]) -> Void) {
-        let urlString = "\(pointSearch)?kinds[]=\(interestType.rawValue)"
+        // only search for points of interest near the user if we have their location
+        var locationString = ""
+        if let data = UserDefaults.standard.object(forKey: "location") as? Data,
+           let location = try? JSONDecoder().decode(UserLocation.self, from: data) {
+            locationString = "&location[lat]=\(location.lat)&location[lon]=\(location.lon)"
+        }
+        let urlString = "\(pointSearch)?kinds[]=\(interestType.rawValue)\(locationString)"
+        print(urlString)
         guard let url = URL(string: urlString) else {
             print("Error creating URL")
             completion([])

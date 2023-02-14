@@ -48,11 +48,11 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
     }()
 
     private lazy var noResults: UILabel = {
-        var title = UILabel()
-        title.textColor = .black
-        title.text = "No results found. Try a different search term!"
-        title.textAlignment = .center
-        return title
+        var label = UILabel()
+        label.textColor = .black
+        label.text = "No results found. Try a different search term!"
+        label.textAlignment = .center
+        return label
     }()
 
     private lazy var containerView = UIView()
