@@ -20,7 +20,7 @@ public class SearchResultView: UICollectionViewCell {
         }
     }
 
-    private var selectedSearchResult = InterestPoint(id: "123", resource: "point", kind: .marina, name: "test", web_url: URL(string: "www.google.com")!, location: InterestPoint.Location(lat: 65.0123, lon: 54.234, what3words: "what-three-words"), review_count: 4, images: InterestPoint.ImageCollection(data: [], total_count: 0))
+    private var selectedSearchResult = InterestPoint(id: "123", resource: "point", kind: .marina, name: "test", web_url: "www.google.com", location: InterestPoint.Location(lat: 65.0123, lon: 54.234, what3words: "what-three-words"), review_count: 4, images: InterestPoint.ImageCollection(resource: "", data: [], total_count: 0))
 
     private lazy var iconView =  {
         let image = UIImageView()

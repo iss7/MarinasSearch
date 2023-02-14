@@ -13,9 +13,6 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
 
     private var searchResult: [InterestPoint]
 
-    // todo: maybe use this as title, maybe delete
-    private var searchTerm: String
-
     private lazy var searchResultCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -50,16 +47,24 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
         return title
     }()
 
+    private lazy var noResults: UILabel = {
+        var title = UILabel()
+        title.textColor = .black
+        title.text = "No results found. Try a different search term!"
+        title.textAlignment = .center
+        return title
+    }()
+
     private lazy var containerView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+
         [backButton, titleView].forEach(headerView.addSubview)
         containerView.addSubview(searchResultCollectionView)
 
-        [containerView, headerView].forEach(view.addSubview)
+        [containerView, headerView, noResults].forEach(view.addSubview)
 
         headerView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
@@ -84,12 +89,20 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
             make.right.equalToSuperview().inset(50)
             make.left.equalTo(backButton.snp.right)
         }
+
+        noResults.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.equalTo(50)
+        }
+
+        if !searchResult.isEmpty {
+            noResults.isHidden = true
+        }
     }
 
     // MARK: init
-    init(searchResult: [InterestPoint], searchTerm: String) {
+    init(searchResult: [InterestPoint]) {
         self.searchResult = searchResult
-        self.searchTerm = searchTerm
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -130,7 +143,6 @@ extension SearchResultViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: real data here
         let interestPoint = searchResult[indexPath.row]
 
         let vc = InterestPointViewController(interestPoint: interestPoint)

@@ -21,11 +21,11 @@ public struct InterestPoint: Codable {
 
     var name: String
 
-    var web_url: URL?
+    private(set) var web_url: String
 
     var location: Location
 
-    var rating: Int?
+    var rating: String?
 
     var review_count: Int
 
@@ -40,6 +40,7 @@ extension InterestPoint {
     }
 
     struct ImageCollection: Codable {
+        var resource: String
         var data: [ImageData]
         var total_count: Int
     }

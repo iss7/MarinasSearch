@@ -185,7 +185,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
 
     @objc
     private func openWebView() {
-        guard let url = interestPoint.web_url else {
+        guard let url = URL(string: interestPoint.web_url) else {
             return
         }
         let webView = SFSafariViewController(url: url)

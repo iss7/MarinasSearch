@@ -68,16 +68,45 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return imageView
     }()
 
+    private lazy var textInput = {
+        let textInput = UITextField()
+        textInput.placeholder = "Search..."
+        textInput.font = UIFont.systemFont(ofSize: 15)
+        textInput.layer.borderWidth = 1
+        textInput.layer.cornerRadius = 10
+        textInput.layer.borderColor = UIColor.gray.cgColor
+        textInput.keyboardType = UIKeyboardType.default
+        textInput.returnKeyType = UIReturnKeyType.done
+        textInput.clearButtonMode = UITextField.ViewMode.whileEditing
+        textInput.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        textInput.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textInput.frame.height))
+        textInput.leftViewMode = .always
+        textInput.delegate = self
+        return textInput
+    }()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        textInput.text = nil
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        [buttonGridCollectionView, loadingOverlay].forEach(view.addSubview)
+        [textInput, buttonGridCollectionView, loadingOverlay].forEach(view.addSubview)
         [loadingWave, loadingImage].forEach(view.addSubview)
         showHideLoadingScreen(show: false)
 
         let gridInset = UIDevice.current.userInterfaceIdiom == .pad ? 100 : 30
+        textInput.snp.makeConstraints { make in
+            make.top.left.right.equalTo(view.safeAreaLayoutGuide).inset(gridInset)
+            make.height.equalTo(50)
+        }
+
         buttonGridCollectionView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview().inset(gridInset)
+            make.left.right.equalToSuperview().inset(gridInset)
+            make.top.equalTo(textInput.snp.bottom).offset(50)
             make.bottom.equalToSuperview()
         }
 
@@ -96,7 +125,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
 
     private func showSearchResults(results: [InterestPoint]) {
-        let vc = SearchResultViewController(searchResult: results, searchTerm: "")
+        let vc = SearchResultViewController(searchResult: results)
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
@@ -108,6 +137,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
 
     private func animateLoading() {
+        showHideLoadingScreen(show: true)
+
         UIView.animateKeyframes(withDuration: 4, delay: 0, options: .repeat, animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/4) {
                 self.loadingImage.transform = CGAffineTransform(rotationAngle: .pi/12)
@@ -158,12 +189,27 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     private func fetchPointOfInterest(interestType: InterestPointType) {
-        showHideLoadingScreen(show: true)
         animateLoading()
 
         searchAPI.fetchPointsByKind(interestType: interestType) {[weak self] results in
             self?.searchResults = results
         }
     }
+}
+
+// MARK:- ---> UITextFieldDelegate
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text else {
+            return true
+        }
+        animateLoading()
+        searchAPI.fetchPointsBySearchTerm(searchTerm: text) { [weak self] results in
+            self?.searchResults = results
+        }
+        return true
+    }
+
 }
 

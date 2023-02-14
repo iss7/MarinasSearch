@@ -15,9 +15,27 @@ public final class SearchAPI {
         let urlString = "\(pointSearch)?kinds[]=\(interestType.rawValue)"
         guard let url = URL(string: urlString) else {
             print("Error creating URL")
+            completion([])
             return
         }
 
+        fetchPoints(url: url, completion: completion)
+    }
+
+    func fetchPointsBySearchTerm(searchTerm: String, completion: @escaping ([InterestPoint]) -> Void) {
+        // TODO: Ideally there would be more string processing here to validate search terms
+        let queryString = searchTerm.replacingOccurrences(of: " ", with: "%20")
+        let urlString = "\(pointSearch)?query=\(queryString)"
+        guard let url = URL(string: urlString) else {
+            print("Error creating URL")
+            completion([])
+            return
+        }
+
+        fetchPoints(url: url, completion: completion)
+    }
+
+    private func fetchPoints(url: URL, completion: @escaping ([InterestPoint]) -> Void) {
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
                 print("Error making api call for \(url), error: \(error.localizedDescription)")
@@ -30,8 +48,14 @@ public final class SearchAPI {
                 completion([])
                 return
             }
-            if let data, let interestPoints = try? JSONDecoder().decode(InterestPointSet.self, from: data) {
-                return completion(interestPoints.data)
+            if let data = data {
+                let decoder = JSONDecoder()
+                        do {
+                            let interestPoints = try decoder.decode(InterestPointSet.self, from: data)
+                            return completion(interestPoints.data)
+                        } catch  {
+                           print(error)
+                        }
             }
             completion([])
         })
