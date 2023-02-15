@@ -19,7 +19,6 @@ public final class SearchAPI {
             locationString = "&location[lat]=\(location.lat)&location[lon]=\(location.lon)"
         }
         let urlString = "\(pointSearch)?kinds[]=\(interestType.rawValue)\(locationString)"
-        print(urlString)
         guard let url = URL(string: urlString) else {
             print("Error creating URL")
             completion([])

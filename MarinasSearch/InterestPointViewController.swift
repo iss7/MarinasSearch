@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SafariServices
+import CoreLocation
 
 class InterestPointViewController: UIViewController, UICollectionViewDelegate {
     private var interestPoint: InterestPoint
@@ -51,7 +52,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
     private lazy var resourceRow = IconTitleRowView(iconImageLocation: interestPoint.kind.iconLocation, text: interestPoint.kind.rawValue)
 
     private lazy var coordsRow: IconTitleRowView = {
-        let text = "\(interestPoint.location.lat), \(interestPoint.location.lon)"
+        let text = "\(interestPoint.location.lat), \(interestPoint.location.lon) \(calculateDistanceString())"
         return IconTitleRowView(iconImageLocation: "location_icon", text: text, color: .darkGray)
     }()
 
@@ -93,8 +94,6 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
         view.showsHorizontalScrollIndicator = true
         return view
     }()
-
-
 
     private lazy var scrollView = UIScrollView(frame: .zero)
     private lazy var containerView: UIView = {
@@ -191,6 +190,18 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
         let webView = SFSafariViewController(url: url)
         webView.modalPresentationStyle = .overFullScreen
         self.present(webView, animated: true, completion: nil)
+    }
+
+    private func calculateDistanceString() -> String {
+        let pointLocation = CLLocation(latitude: CLLocationDegrees(interestPoint.location.lat), longitude: CLLocationDegrees(interestPoint.location.lon))
+        if let data = UserDefaults.standard.object(forKey: "location") as? Data,
+           let location = try? JSONDecoder().decode(UserLocation.self, from: data) {
+            let yourLocation = CLLocation(latitude: CLLocationDegrees(location.lat), longitude: CLLocationDegrees(location.lon))
+            let distanceMeters = yourLocation.distance(from: pointLocation)
+            let miles = round(distanceMeters / 16090) / 10
+            return ", \(miles) mi"
+        }
+        return ""
     }
 }
 
