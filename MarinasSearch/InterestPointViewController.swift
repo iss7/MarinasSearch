@@ -52,7 +52,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
 
     private lazy var coordsRow: IconTitleRowView = {
         let text = "\(interestPoint.location.lat), \(interestPoint.location.lon)"
-        return IconTitleRowView(iconImageLocation: "location_icon", text: text, color: .purple)
+        return IconTitleRowView(iconImageLocation: "location_icon", text: text, color: .darkGray)
     }()
 
     private lazy var ratingRow: IconTitleRowView = {
