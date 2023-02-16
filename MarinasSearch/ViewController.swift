@@ -31,7 +31,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 
     private var currentSearchResults: [InterestPoint] = []
 
-    private lazy var buttonGridCollectionView = {
+    private lazy var buttonGridCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 20
@@ -45,13 +45,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return view
     }()
 
-    private lazy var loadingOverlay = {
+    private lazy var loadingOverlay: UIView = {
         let overlay = UIView()
         overlay.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
         return overlay
     }()
 
-    private lazy var loadingImage = {
+    private lazy var loadingImage: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "sailboat")
         imageView.image = image
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return imageView
     }()
 
-    private lazy var loadingWave = {
+    private lazy var loadingWave: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "wavy")
         imageView.image = image
@@ -69,7 +69,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return imageView
     }()
 
-    private lazy var textInput = {
+    private lazy var textInput: UITextField = {
         let textInput = UITextField()
         textInput.placeholder = "Search..."
         textInput.font = UIFont.systemFont(ofSize: 15)
@@ -86,7 +86,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return textInput
     }()
 
-    private lazy var instructions = {
+    private lazy var instructions: UILabel = {
         var label = UILabel()
         label.textColor = .black
         label.text = "Enter a search term above, or select a button below to search for points of interest near you!"
@@ -164,7 +164,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                 self.loadingImage.transform = CGAffineTransform(rotationAngle: -.pi/12)
             }
             UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 1/4) {
-                self.loadingImage.transform = .identity
+                self.loadingImage.transform = CGAffineTransform(rotationAngle: 0)
             }
         })
     }

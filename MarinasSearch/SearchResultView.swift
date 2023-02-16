@@ -22,7 +22,7 @@ public class SearchResultView: UICollectionViewCell {
 
     private var selectedSearchResult = InterestPoint(id: "123", resource: "point", kind: .marina, name: "test", web_url: "www.google.com", location: InterestPoint.Location(lat: 65.0123, lon: 54.234, what3words: "what-three-words"), review_count: 4, images: InterestPoint.ImageCollection(resource: "", data: [], total_count: 0))
 
-    private lazy var iconView =  {
+    private lazy var iconView: UIImageView =  {
         let image = UIImageView()
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
@@ -36,7 +36,7 @@ public class SearchResultView: UICollectionViewCell {
         return buttonLabel
     }()
 
-    private lazy var content =  {
+    private lazy var content: UIView =  {
         let view = UIView(frame: self.bounds)
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 0.5

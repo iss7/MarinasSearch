@@ -13,7 +13,7 @@ import CoreLocation
 class InterestPointViewController: UIViewController, UICollectionViewDelegate {
     private var interestPoint: InterestPoint
 
-    private lazy var headerView = {
+    private lazy var headerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
@@ -25,7 +25,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
         return border
     }()
 
-    private lazy var backButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "back_icon"), for: .normal)
         button.addTarget(self, action: #selector(headerViewClickedBackButton), for: .touchUpInside)
@@ -66,7 +66,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
         return IconTitleRowView(iconImageLocation: "star_icon", text: text, color: .darkGray)
     }()
 
-    private lazy var webViewButton = {
+    private lazy var webViewButton: UIButton = {
         let button = UIButton()
         button.setTitle("View on Marinas.com", for: .normal)
         button.addTarget(self, action: #selector(openWebView), for: .touchUpInside)
@@ -81,7 +81,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
         return button
     }()
 
-    private lazy var imageCollectionView = {
+    private lazy var imageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 20
@@ -211,7 +211,7 @@ public class IconTitleRowView: UIView {
     private var textColor: UIColor
     private var text: String
 
-    private lazy var iconView =  {
+    private lazy var iconView: UIImageView =  {
         let imageView = UIImageView()
         let image = UIImage(named: iconImageLocation)
         imageView.image = image

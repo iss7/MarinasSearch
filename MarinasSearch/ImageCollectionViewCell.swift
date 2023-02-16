@@ -33,12 +33,12 @@ public class ImageCollectionViewCell: UICollectionViewCell {
 
             DispatchQueue.main.async {
                 self.imageView.image = UIImage(data: data)
-                self.imageView.contentMode = .scaleAspectFit
+                self.imageView.contentMode = UIView.ContentMode.scaleAspectFit
             }
         }
     }
 
-    public lazy var imageView =  {
+    public lazy var imageView: UIImageView =  {
         let image = UIImageView()
         image.clipsToBounds = true
         return image

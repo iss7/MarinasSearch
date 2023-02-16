@@ -13,7 +13,7 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
 
     private var searchResult: [InterestPoint]
 
-    private lazy var searchResultCollectionView = {
+    private lazy var searchResultCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
@@ -26,13 +26,13 @@ class SearchResultViewController: UIViewController, UICollectionViewDelegate {
         return view
     }()
 
-    private lazy var headerView = {
+    private lazy var headerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
 
-    private lazy var backButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "back_icon"), for: .normal)
         button.addTarget(self, action: #selector(headerViewClickedBackButton), for: .touchUpInside)
