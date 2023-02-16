@@ -22,7 +22,7 @@ public class IconLabelButton: UICollectionViewCell {
 
     private var selectedIcon: InterestPointType = .marina
 
-    private lazy var iconView =  {
+    private lazy var iconView: UIImageView =  {
         let image = UIImageView()
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit

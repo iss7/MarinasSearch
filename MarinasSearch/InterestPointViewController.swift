@@ -198,7 +198,7 @@ class InterestPointViewController: UIViewController, UICollectionViewDelegate {
            let location = try? JSONDecoder().decode(UserLocation.self, from: data) {
             let yourLocation = CLLocation(latitude: CLLocationDegrees(location.lat), longitude: CLLocationDegrees(location.lon))
             let distanceMeters = yourLocation.distance(from: pointLocation)
-            let miles = round(distanceMeters / 16090) / 10
+            let miles = round(distanceMeters * 10 / 1609) / 10
             return ", \(miles) mi"
         }
         return ""
