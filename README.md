@@ -14,4 +14,6 @@ Ideal future improvements:
 The app can be run via an Xcode simulator or can be loaded onto an iPhone from Xcode. It is compatible with Xcode versions 13.0 and above.
 
 The app uses Snapkit for some UI layout features. This should automatically work without additional installation steps. 
-TODO
+
+### Running the App
+To run the app, clone the repo from Github. Open in Xcode version 13.0 or above. The app should run normally in an Xcode simulator, or can be loaded onto an iOS device. 
