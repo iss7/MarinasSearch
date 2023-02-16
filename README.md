@@ -9,6 +9,7 @@ Ideal future improvements:
 - Map view to show relative locations to points (as well as user location)
 - Display reviews without going to Marinas.com
 - Integration with some mapping software to provide directions to nearby interest points
+- Better text input validation for search terms 
 
 ## Setup Instructions
 The app can be run via an Xcode simulator or can be loaded onto an iPhone from Xcode. It is compatible with Xcode versions 13.0 and above.
