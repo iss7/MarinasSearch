@@ -11,5 +11,7 @@ Ideal future improvements:
 - Integration with some mapping software to provide directions to nearby interest points
 
 ## Setup Instructions
-The app can be run via an Xcode simulator or can be loaded onto an iPhone from Xcode. 
+The app can be run via an Xcode simulator or can be loaded onto an iPhone from Xcode. It is compatible with Xcode versions 13.0 and above.
+
+The app uses Snapkit for some UI layout features. This should automatically work without additional installation steps. 
 TODO
