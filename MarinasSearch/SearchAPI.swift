@@ -29,7 +29,7 @@ public final class SearchAPI {
     }
 
     func fetchPointsBySearchTerm(searchTerm: String, completion: @escaping ([InterestPoint]) -> Void) {
-        // TODO: Ideally there would be more string processing here to validate search terms
+        // TODO: Ideally there should be more string processing here to validate search terms
         let queryString = searchTerm.replacingOccurrences(of: " ", with: "%20")
         let urlString = "\(pointSearch)?query=\(queryString)"
         guard let url = URL(string: urlString) else {
